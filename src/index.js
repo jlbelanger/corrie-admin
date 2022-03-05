@@ -1,4 +1,4 @@
-import '@jlbelanger/crudnick/dist/index.css';
+import './scss/style.scss';
 import { App } from '@jlbelanger/crudnick';
 import React from 'react';
 import ReactDOM from 'react-dom';
