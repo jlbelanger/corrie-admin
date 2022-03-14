@@ -18,7 +18,8 @@
 		"build": "react-scripts build",
 		"lint": "yarn lint:css && yarn lint:js",
 		"lint:css": "node_modules/.bin/stylelint 'src/scss/**/*.scss'",
-		"lint:js": "node_modules/.bin/eslint . --ext .js --ext .jsx"
+		"lint:js": "node_modules/.bin/eslint . --ext .js --ext .jsx",
+		"test:cypress": "node_modules/.bin/cypress open"
 	},
 	"dependencies": {
 		"@jlbelanger/crudnick": "link:../crudnick",
@@ -38,6 +39,7 @@
 		"@testing-library/jest-dom": "^5.16.1",
 		"@testing-library/react": "^12.1.2",
 		"@testing-library/user-event": "^13.5.0",
+		"cypress": "^9.5.2",
 		"eslint": "^8.5.0",
 		"eslint-config-airbnb": "^19.0.2",
 		"eslint-plugin-import": "^2.25.3",
