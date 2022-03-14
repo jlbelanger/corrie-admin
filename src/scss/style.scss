@@ -5,3 +5,8 @@ $crudnick-primary: #526831;
 .crudnick-cell--filename {
 	font-size: 0;
 }
+
+.formosa-autocomplete__value {
+	padding-left: 0;
+	padding-right: #{$formosa-autocomplete-value-height - $formosa-autocomplete-value-padding-top};
+}

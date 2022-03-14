@@ -9,6 +9,7 @@ ReactDOM.render(
 		<App
 			nav={[
 				{ label: 'People', path: '/people' },
+				{ label: 'Relationships', path: '/relationships' },
 				{ label: 'Users', path: '/users' },
 			]}
 		>
