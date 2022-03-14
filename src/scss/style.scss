@@ -1,1 +1,7 @@
+$crudnick-primary: #526831;
+
 @import '../../node_modules/@jlbelanger/crudnick/src/style';
+
+.crudnick-cell--filename {
+	font-size: 0;
+}
