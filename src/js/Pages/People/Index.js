@@ -2,6 +2,8 @@ import { IndexTable } from '@jlbelanger/crudnick';
 import React from 'react';
 
 export default function Index() {
+	let url = 'people?sort=-num_appearances';
+	url += '&fields[people]=name,slug,birthdate,deathdate,is_current,num_appearances,appearances_date,filename,created_at';
 	return (
 		<IndexTable
 			columns={[
@@ -18,6 +20,7 @@ export default function Index() {
 						}
 						return (
 							<img
+								alt=""
 								height={50}
 								loading="lazy"
 								src={`${process.env.REACT_APP_FRONTEND_URL}${value}`}
@@ -70,7 +73,7 @@ export default function Index() {
 			}}
 			path="people"
 			title="People"
-			url="people?sort=-num_appearances&fields[people]=name,slug,birthdate,deathdate,is_current,num_appearances,appearances_date,filename,created_at"
+			url={url}
 		/>
 	);
 }
