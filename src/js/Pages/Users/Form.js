@@ -5,8 +5,8 @@ import React from 'react';
 export default function Form({ formType }) {
 	return (
 		<div className="formosa-horizontal">
-			<Field label="Username" name="username" required />
-			<Field label="Email" name="email" type="email" required />
+			<Field label="Username" maxLength={255} name="username" required />
+			<Field label="Email" maxLength={255} name="email" type="email" required />
 			<Field label="Password" name="password" type="password" required={formType === 'add'} />
 		</div>
 	);

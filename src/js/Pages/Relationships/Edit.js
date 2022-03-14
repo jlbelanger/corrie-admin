@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 export default function Edit() {
 	const { id } = useParams();
+	const relationshipNames = ['person_1', 'person_2'];
 
 	return (
 		<EditForm
@@ -12,8 +13,9 @@ export default function Edit() {
 			component={Form}
 			name="name"
 			path="relationships"
+			relationshipNames={relationshipNames}
 			singular="relationship"
-			url={`relationships/${id}?include=person_1,person_2&fields[people]=name`}
+			url={`relationships/${id}?include=${relationshipNames.join(',')}&fields[people]=name`}
 		/>
 	);
 }

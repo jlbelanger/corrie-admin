@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Index() {
 	let url = 'people?sort=-num_appearances';
-	url += '&fields[people]=name,slug,birthdate,deathdate,is_current,num_appearances,appearances_date,filename,created_at';
+	url += '&fields[people]=name,slug,birthdate,deathdate,is_current,num_appearances,appearances_date,filename,date_added';
 	return (
 		<IndexTable
 			columns={[
@@ -61,7 +61,7 @@ export default function Index() {
 					size: 12,
 				},
 				{
-					key: 'created_at',
+					key: 'date_added',
 					label: 'Date added',
 					size: 20,
 				},

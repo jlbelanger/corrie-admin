@@ -50,42 +50,33 @@ export default function Form({ row }) {
 		'divorce',
 		'invalid',
 	];
-	const showTakeLastName = ['adoptive parent', 'common law spouse', 'spouse'].includes(row.relationship);
+	const showTakeLastName = row && ['adoptive parent', 'common law spouse', 'spouse'].includes(row.relationship);
 
 	return (
 		<>
 			{error ? (<div className="formosa-message formosa-message--error">There was an error loading the list of people.</div>) : null}
 			<div className="formosa-horizontal">
 				<Field
-					afterAdd={() => {
-						const elem = document.querySelector('[id="person_2"]');
-						if (elem) {
-							elem.focus();
-						} else {
-							document.querySelector('[id="relationship"]').focus();
-						}
-					}}
 					label="Person 1"
 					labelFn={labelFn}
 					max={1}
 					name="person_1"
 					options={people}
+					required
 					type="autocomplete"
 					valueKey={valueKey}
 				/>
 				<Field
-					afterAdd={() => {
-						document.querySelector('[id="relationship"]').focus();
-					}}
 					label="Person 2"
 					labelFn={labelFn}
 					max={1}
 					name="person_2"
 					options={people}
+					required
 					type="autocomplete"
 					valueKey={valueKey}
 				/>
-				<Field label="Relationship" name="relationship" options={relationships} type="select" />
+				<Field label="Relationship" name="relationship" options={relationships} required type="select" />
 				<Field label="Start date" maxLength={10} name="start_date" placeholder="YYYY-MM-DD" size={12} />
 				<Field label="End date" maxLength={10} name="end_date" placeholder="YYYY-MM-DD" size={12} />
 				<Field label="End reason" name="end_reason" options={endReasons} type="select" />

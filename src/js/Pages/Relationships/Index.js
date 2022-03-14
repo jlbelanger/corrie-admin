@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Index() {
 	let url = 'relationships?sort=-created_at';
-	url += '&fields[relationships]=relationship,start_date,end_date,created_at';
+	url += '&fields[relationships]=relationship,start_date,end_date,date_added';
 	url += '&fields[people]=name';
 	url += '&include=person_1,person_2';
 	return (
@@ -31,13 +31,13 @@ export default function Index() {
 					label: 'End date',
 				},
 				{
-					key: 'created_at',
+					key: 'date_added',
 					label: 'Date added',
 					size: 20,
 				},
 			]}
 			defaultOptions={{
-				sortKey: 'created_at',
+				sortKey: 'date_added',
 				sortDir: 'desc',
 				filters: {},
 			}}

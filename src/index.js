@@ -12,6 +12,9 @@ ReactDOM.render(
 				{ label: 'Relationships', path: '/relationships' },
 				{ label: 'Users', path: '/users' },
 			]}
+			routerAttributes={{
+				basename: process.env.PUBLIC_URL,
+			}}
 		>
 			<Routes />
 		</App>
