@@ -8,6 +8,7 @@ ReactDOM.render(
 	<React.StrictMode>
 		<App
 			nav={[
+				{ label: 'People', path: '/people' },
 				{ label: 'Users', path: '/users' },
 			]}
 		>
