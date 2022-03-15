@@ -35,12 +35,12 @@ describe('login', () => {
 			cy.intercept('POST', '**/api/auth/login').as('login');
 			cy.get('[type="submit"]').click();
 			cy.wait('@login').its('response.statusCode').should('equal', 200);
-			cy.location('pathname').should('eq', '/');
+			cy.location('pathname').should('eq', '/admin/');
 
 			// Logout.
 			cy.get('#crudnick-menu-button').click();
 			cy.contains('Logout').click();
-			cy.location('pathname').should('eq', '/');
+			cy.location('pathname').should('eq', '/admin');
 		});
 	});
 });
