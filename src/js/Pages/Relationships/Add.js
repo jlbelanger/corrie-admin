@@ -9,7 +9,7 @@ export default function Add() {
 		<AddForm
 			apiPath="relationships"
 			component={Form}
-			path="relationship"
+			path="relationships"
 			relationshipNames={relationshipNames}
 			singular="relationship"
 		/>
