@@ -2,6 +2,11 @@
 
 ## Development
 
+### Requirements
+
+- [Git](https://git-scm.com/)
+- [Yarn](https://classic.yarnpkg.com/en/docs/install)
+
 ### Setup
 
 ``` bash
