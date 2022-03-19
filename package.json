@@ -22,8 +22,8 @@
 		"test:cypress": "node_modules/.bin/cypress open"
 	},
 	"dependencies": {
-		"@jlbelanger/crudnick": "link:../crudnick",
-		"@jlbelanger/formosa": "link:../formosa",
+		"@jlbelanger/crudnick": "jlbelanger/crudnick#1c05c3f981aa5c3fce0e1a92014cf47b52d425c9",
+		"@jlbelanger/formosa": "jlbelanger/formosa#f49a499112bd7f9189a6013d0fe9b586d01ffd8b",
 		"node-sass": "^7.0.0",
 		"prop-types": "^15.8.0",
 		"react": "^17.0.2",
