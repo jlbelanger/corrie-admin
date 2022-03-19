@@ -9,6 +9,8 @@
 
 ### Setup
 
+First, setup [Corrieography](https://github.com/jlbelanger/corrie).
+
 ``` bash
 git clone https://github.com/jlbelanger/corrie-admin.git
 cd corrie-admin
