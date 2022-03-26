@@ -57,6 +57,7 @@ export default function Form({ row }) {
 			{error ? (<div className="formosa-message formosa-message--error">There was an error loading the list of people.</div>) : null}
 			<div className="formosa-horizontal">
 				<Field
+					autoFocus
 					label="Person 1"
 					labelFn={labelFn}
 					max={1}

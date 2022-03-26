@@ -25,7 +25,7 @@ export default function Form() {
 
 	return (
 		<div className="formosa-horizontal">
-			<Field afterChange={autopopulate} label="First name" maxLength={255} name="first_name" note="Use ? if unknown." required />
+			<Field afterChange={autopopulate} autoFocus label="First name" maxLength={255} name="first_name" note="Use ? if unknown." required />
 			<Field afterChange={autopopulate} label="Last name" maxLength={255} name="last_name" note="Use ? if unknown." required />
 			<Field label="Slug" maxLength={255} name="slug" required />
 			<Field accept="image/*" label="Image" imagePrefix={process.env.REACT_APP_FRONTEND_URL} imagePreview name="filename" type="file" />
