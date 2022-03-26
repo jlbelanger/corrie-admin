@@ -33,6 +33,7 @@ export default function Index() {
 					key: 'name',
 					label: 'Name',
 					link: true,
+					sortKey: 'slug',
 				},
 				{
 					key: 'birthdate',
