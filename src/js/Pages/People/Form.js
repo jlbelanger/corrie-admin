@@ -7,7 +7,9 @@ export default function Form() {
 			return '';
 		}
 		return value.toLowerCase()
-			.replace(/['.]/g, '')
+			.replace(/ & /g, '-and-')
+			.replace(/<[^>]+>/g, '')
+			.replace(/['’.]/g, '')
 			.replace(/[^a-z0-9-]+/g, '-')
 			.replace(/^-+/, '')
 			.replace(/-+$/, '')
@@ -19,7 +21,7 @@ export default function Form() {
 			return {};
 		}
 		return {
-			slug: toSlug(`${row.first_name || ''} ${row.last_name || ''}`.trim()),
+			slug: toSlug(`${row.first_name || ''} ${row.last_name || ''}`),
 		};
 	};
 
