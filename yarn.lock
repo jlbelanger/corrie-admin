@@ -1402,6 +1402,15 @@
     react-promise-tracker "^2.1.0"
     set-value "^4.1.0"
 
+"@jlbelanger/formosa@jlbelanger/formosa#930e4696e0a46b21f3e3f87e8019f9471ea1f713":
+  version "1.0.2"
+  resolved "https://codeload.github.com/jlbelanger/formosa/tar.gz/930e4696e0a46b21f3e3f87e8019f9471ea1f713"
+  dependencies:
+    get-value "^3.0.1"
+    prop-types "^15.8.0"
+    react-promise-tracker "^2.1.0"
+    set-value "^4.1.0"
+
 "@jridgewell/resolve-uri@^3.0.3":
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/@jridgewell/resolve-uri/-/resolve-uri-3.0.5.tgz#68eb521368db76d040a6315cdb24bf2483037b9c"
