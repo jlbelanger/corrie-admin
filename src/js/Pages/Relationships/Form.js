@@ -3,22 +3,19 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function Form({ row }) {
-	const [people, setPeople] = useState(null);
+	const [people, setPeople] = useState([]);
 	const [error, setError] = useState(false);
 
 	useEffect(() => {
-		if (people === null) {
-			setPeople([]);
-			Api.get('people?fields[people]=name')
-				.then((response) => {
-					setPeople(response);
-				})
-				.catch((response) => {
-					setError(response);
-				});
-		}
+		Api.get('people?fields[people]=name')
+			.then((response) => {
+				setPeople(response);
+			})
+			.catch((response) => {
+				setError(response);
+			});
 		return () => {};
-	});
+	}, []);
 
 	const labelFn = (option) => (
 		<a
