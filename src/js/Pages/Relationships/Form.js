@@ -28,7 +28,7 @@ export default function Form({ row }) {
 		</a>
 	);
 
-	const valueKey = (option) => (JSON.stringify({ id: option.id, type: option.type }));
+	const valueKey = (option) => ({ id: option.id, type: option.type });
 
 	const relationships = [
 		'adoptive parent',
