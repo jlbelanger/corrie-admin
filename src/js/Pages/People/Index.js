@@ -70,7 +70,6 @@ export default function Index() {
 			defaultOptions={{
 				sortKey: 'num_appearances',
 				sortDir: 'desc',
-				filters: {},
 			}}
 			path="people"
 			title="People"

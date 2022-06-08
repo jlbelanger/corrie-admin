@@ -39,7 +39,6 @@ export default function Index() {
 			defaultOptions={{
 				sortKey: 'date_added',
 				sortDir: 'desc',
-				filters: {},
 			}}
 			path="relationships"
 			title="Relationships"

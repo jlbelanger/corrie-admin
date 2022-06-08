@@ -5,14 +5,17 @@ import PropTypes from 'prop-types';
 export default function Form({ row }) {
 	const [people, setPeople] = useState([]);
 	const [error, setError] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		Api.get('people?fields[people]=name')
+		Api.get('people?fields[people]=name', false)
 			.then((response) => {
 				setPeople(response);
+				setIsLoading(false);
 			})
 			.catch((response) => {
 				setError(response);
+				setIsLoading(false);
 			});
 		return () => {};
 	}, []);
@@ -61,6 +64,7 @@ export default function Form({ row }) {
 					name="person_1"
 					options={people}
 					required
+					showLoading={isLoading}
 					type="autocomplete"
 					valueKey={valueKey}
 				/>
@@ -71,6 +75,7 @@ export default function Form({ row }) {
 					name="person_2"
 					options={people}
 					required
+					showLoading={isLoading}
 					type="autocomplete"
 					valueKey={valueKey}
 				/>
