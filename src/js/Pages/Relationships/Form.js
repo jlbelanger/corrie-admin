@@ -17,7 +17,6 @@ export default function Form({ row }) {
 				setError(response);
 				setIsLoading(false);
 			});
-		return () => {};
 	}, []);
 
 	const labelFn = (option) => (
