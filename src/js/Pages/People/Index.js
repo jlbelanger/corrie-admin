@@ -12,6 +12,7 @@ export default function Index() {
 					label: 'Image',
 					disableSearch: true,
 					disableSort: true,
+					size: 1,
 					fn: (_row, value) => {
 						if (!value) {
 							return (

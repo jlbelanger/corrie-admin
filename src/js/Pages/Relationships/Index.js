@@ -21,14 +21,17 @@ export default function Index() {
 				{
 					key: 'relationship',
 					label: 'Relationship',
+					size: 10,
 				},
 				{
 					key: 'start_date',
 					label: 'Start date',
+					size: 12,
 				},
 				{
 					key: 'end_date',
 					label: 'End date',
+					size: 12,
 				},
 				{
 					key: 'date_added',
