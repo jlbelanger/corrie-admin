@@ -1,4 +1,9 @@
 describe('relationships', () => {
+	beforeEach(() => {
+		cy.login();
+		cy.visit('/');
+	});
+
 	it('works', () => {
 		const data = {
 			apiPath: '**/api/relationships',
@@ -7,7 +12,6 @@ describe('relationships', () => {
 			plural: 'Relationships',
 		};
 
-		cy.login();
 		cy.handlesEverything({
 			...data,
 			fieldsAdd: {
