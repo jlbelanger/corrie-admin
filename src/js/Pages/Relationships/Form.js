@@ -1,20 +1,24 @@
-import { Api, Field } from '@jlbelanger/formosa';
+import { Alert, Api, Field } from '@jlbelanger/formosa';
 import React, { useEffect, useState } from 'react';
+import { errorMessageText } from '@jlbelanger/crudnick';
 import PropTypes from 'prop-types';
 
 export default function Form({ row }) {
 	const [people, setPeople] = useState([]);
-	const [error, setError] = useState(false);
+	const [peopleError, setPeopleError] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		Api.get('people?fields[people]=name', false)
-			.then((response) => {
-				setPeople(response);
+			.catch((response) => {
+				setPeopleError(errorMessageText(response));
 				setIsLoading(false);
 			})
-			.catch((response) => {
-				setError(response);
+			.then((response) => {
+				if (!response) {
+					return;
+				}
+				setPeople(response);
 				setIsLoading(false);
 			});
 	}, []);
@@ -53,7 +57,7 @@ export default function Form({ row }) {
 
 	return (
 		<>
-			{error ? (<div className="formosa-message formosa-message--error">There was an error loading the list of people.</div>) : null}
+			{peopleError && (<Alert type="error">There was an error loading the list of people.</Alert>)}
 			<div className="formosa-horizontal">
 				<Field
 					autoFocus

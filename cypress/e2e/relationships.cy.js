@@ -4,14 +4,14 @@ describe('relationships', () => {
 		cy.visit('/');
 	});
 
-	it('works', () => {
-		const data = {
-			apiPath: '**/api/relationships',
-			path: '/relationships',
-			singular: 'relationship',
-			plural: 'Relationships',
-		};
+	const data = {
+		apiPath: '**/api/relationships',
+		path: '/relationships',
+		singular: 'relationship',
+		plural: 'Relationships',
+	};
 
+	it('works', () => {
 		cy.handlesEverything({
 			...data,
 			fieldsAdd: {
@@ -84,4 +84,40 @@ describe('relationships', () => {
 			],
 		});
 	});
+
+	const errorData = {
+		...data,
+		fields: {
+			autocompleteAdd: {
+				person_1: ['Ken Barlow'],
+				person_2: ['Mike Baldwin'],
+			},
+			select: {
+				relationship: 'spouse',
+			},
+		},
+		fieldsEdit: {
+			select: {
+				relationship: 'parent',
+			},
+		},
+	};
+
+	it('handles index errors', () => {
+		cy.handlesIndexErrors(errorData);
+	});
+
+	it('handles add errors', () => {
+		cy.handlesAddErrors(errorData);
+	});
+
+	it('handles view errors', () => {
+		cy.handlesViewErrors(errorData);
+	});
+
+	it('handles edit errors', () => {
+		cy.handlesEditErrors(errorData);
+	});
+
+	// TODO: Error loading people.
 });

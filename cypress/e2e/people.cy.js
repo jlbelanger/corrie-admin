@@ -4,15 +4,15 @@ describe('people', () => {
 		cy.visit('/');
 	});
 
+	const data = {
+		apiPath: '**/api/people',
+		path: '/people',
+		singular: 'person',
+		plural: 'People',
+	};
+
 	it('works', () => {
 		let timestamp = (new Date()).getTime();
-		const data = {
-			apiPath: '**/api/people',
-			path: '/people',
-			singular: 'person',
-			plural: 'People',
-		};
-
 		cy.handlesEverything({
 			...data,
 			fieldsAdd: {
@@ -96,5 +96,31 @@ describe('people', () => {
 				},
 			],
 		});
+	});
+
+	const errorData = {
+		...data,
+		fields: {
+			text: {
+				first_name: () => (`Aaa ${(new Date()).getTime()}`),
+				last_name: 'Aaa',
+			},
+		},
+	};
+
+	it('handles index errors', () => {
+		cy.handlesIndexErrors(errorData);
+	});
+
+	it('handles add errors', () => {
+		cy.handlesAddErrors(errorData);
+	});
+
+	it('handles view errors', () => {
+		cy.handlesViewErrors(errorData);
+	});
+
+	it('handles edit errors', () => {
+		cy.handlesEditErrors(errorData);
 	});
 });
