@@ -59,8 +59,8 @@ export default function Form({ row }) {
 		<>
 			{peopleError && (<Alert type="error">There was an error loading the list of people.</Alert>)}
 			<div className="formosa-horizontal">
+				<Field autoFocus label="Relationship" name="relationship" options={relationships} required type="select" />
 				<Field
-					autoFocus
 					label="Person 1"
 					labelFn={labelFn}
 					max={1}
@@ -82,7 +82,6 @@ export default function Form({ row }) {
 					type="autocomplete"
 					valueKey={valueKey}
 				/>
-				<Field label="Relationship" name="relationship" options={relationships} required type="select" />
 				<Field label="Start date" maxLength={10} name="start_date" placeholder="YYYY-MM-DD" size={12} />
 				<Field label="End date" maxLength={10} name="end_date" placeholder="YYYY-MM-DD" size={12} />
 				<Field label="End reason" name="end_reason" options={endReasons} type="select" />
