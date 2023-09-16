@@ -1,3 +1,15 @@
+import {
+	handlesAdd,
+	handlesAddErrors,
+	handlesDelete,
+	handlesEdit,
+	handlesEditErrors,
+	handlesIndex,
+	handlesIndexErrors,
+	handlesViewErrors,
+	setupInterceptions,
+} from '../support/commands';
+
 describe('people', () => {
 	beforeEach(() => {
 		cy.login();
@@ -13,9 +25,14 @@ describe('people', () => {
 
 	it('works', () => {
 		let timestamp = (new Date()).getTime();
-		cy.handlesEverything({
+
+		setupInterceptions(data);
+		handlesIndex(data);
+		cy.get('[data-cy="add"]').click();
+
+		handlesAdd({
 			...data,
-			fieldsAdd: {
+			fields: {
 				text: {
 					first_name: `Aaa ${timestamp}`,
 					last_name: 'Aaa',
@@ -24,23 +41,26 @@ describe('people', () => {
 					slug: `aaa-${timestamp}-aaa`,
 				},
 			},
-			fieldsEdit: [
-				{
-					text: {
-						first_name: `Bbb ${timestamp}`,
-						last_name: 'Bbb',
-					},
-					autopopulate: {
-						slug: `bbb-${timestamp}-bbb`,
-					},
-				},
-			],
 		});
+		handlesEdit({
+			...data,
+			fields: {
+				text: {
+					first_name: `Bbb ${timestamp}`,
+					last_name: 'Bbb',
+				},
+				autopopulate: {
+					slug: `bbb-${timestamp}-bbb`,
+				},
+			},
+		});
+		handlesDelete(data);
 
 		timestamp = (new Date()).getTime();
-		cy.handlesEverything({
+		cy.get('[data-cy="add"]').click();
+		handlesAdd({
 			...data,
-			fieldsAdd: {
+			fields: {
 				text: {
 					first_name: `Aaa ${timestamp}`,
 					last_name: 'Aaa',
@@ -65,37 +85,39 @@ describe('people', () => {
 					slug: `aaa-${timestamp}-aaa`,
 				},
 			},
-			fieldsEdit: [
-				{
-					text: {
-						first_name: `Bbb ${timestamp}`,
-						last_name: 'Bbb',
-						birthdate: '2004-04-04',
-						deathdate: '2005-05-05',
-						num_appearances: '2',
-						appearances_date: '2006-06-06',
-					},
-					uncheck: {
-						is_current: true,
-					},
-					radio: {
-						gender: 'F',
-					},
-					fileRemove: {
-						filename: true,
-					},
-					fileAdd: {
-						filename: {
-							source: 'gail-potter.jpg',
-							dest: `/uploads/person/bbb-${timestamp}-bbb.jpg`,
-						},
-					},
-					autopopulate: {
-						slug: `bbb-${timestamp}-bbb`,
+		});
+		handlesEdit({
+			...data,
+			fields: {
+				text: {
+					first_name: `Bbb ${timestamp}`,
+					last_name: 'Bbb',
+					birthdate: '2004-04-04',
+					deathdate: '2005-05-05',
+					num_appearances: '2',
+					appearances_date: '2006-06-06',
+				},
+				uncheck: {
+					is_current: true,
+				},
+				radio: {
+					gender: 'F',
+				},
+				fileRemove: {
+					filename: true,
+				},
+				fileAdd: {
+					filename: {
+						source: 'gail-potter.jpg',
+						dest: `/uploads/person/bbb-${timestamp}-bbb.jpg`,
 					},
 				},
-			],
+				autopopulate: {
+					slug: `bbb-${timestamp}-bbb`,
+				},
+			},
 		});
+		handlesDelete(data);
 	});
 
 	const errorData = {
@@ -106,21 +128,26 @@ describe('people', () => {
 				last_name: 'Aaa',
 			},
 		},
+		fieldsEdit: {
+			text: {
+				first_name: () => (`Bbb ${(new Date()).getTime()}`),
+			},
+		},
 	};
 
 	it('handles index errors', () => {
-		cy.handlesIndexErrors(errorData);
+		handlesIndexErrors(errorData);
 	});
 
 	it('handles add errors', () => {
-		cy.handlesAddErrors(errorData);
+		handlesAddErrors(errorData);
 	});
 
 	it('handles view errors', () => {
-		cy.handlesViewErrors(errorData);
+		handlesViewErrors(errorData);
 	});
 
 	it('handles edit errors', () => {
-		cy.handlesEditErrors(errorData);
+		handlesEditErrors(errorData);
 	});
 });

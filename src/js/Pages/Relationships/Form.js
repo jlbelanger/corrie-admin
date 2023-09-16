@@ -7,9 +7,10 @@ export default function Form({ row }) {
 	const [people, setPeople] = useState([]);
 	const [peopleError, setPeopleError] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
+	const api = Api.instance();
 
 	useEffect(() => {
-		Api.get('people?fields[people]=name', false)
+		api('people?fields[people]=name', false)
 			.catch((response) => {
 				setPeopleError(errorMessageText(response));
 				setIsLoading(false);

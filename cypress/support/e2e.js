@@ -1,5 +1,3 @@
-import './commands';
-
 Cypress.Commands.add('login', (username = '', password = '', expectedCode = 200) => {
 	username = username || Cypress.env('default_username');
 	password = password || Cypress.env('default_password');

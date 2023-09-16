@@ -1,3 +1,15 @@
+import {
+	handlesAdd,
+	handlesAddErrors,
+	handlesDelete,
+	handlesEdit,
+	handlesEditErrors,
+	handlesIndex,
+	handlesIndexErrors,
+	handlesViewErrors,
+	setupInterceptions,
+} from '../support/commands';
+
 describe('relationships', () => {
 	beforeEach(() => {
 		cy.login();
@@ -9,12 +21,22 @@ describe('relationships', () => {
 		path: '/relationships',
 		singular: 'relationship',
 		plural: 'Relationships',
+		formWait: {
+			getPeople: '**/api/people?*',
+		},
+		waitFn: () => {
+			cy.wait('@getPeople').its('response.statusCode').should('equal', 200);
+		},
 	};
 
 	it('works', () => {
-		cy.handlesEverything({
+		setupInterceptions(data);
+		handlesIndex(data);
+		cy.get('[data-cy="add"]').click();
+
+		handlesAdd({
 			...data,
-			fieldsAdd: {
+			fields: {
 				autocompleteAdd: {
 					person_1: ['Ken Barlow'],
 					person_2: ['Mike Baldwin'],
@@ -23,26 +45,29 @@ describe('relationships', () => {
 					relationship: 'spouse',
 				},
 			},
-			fieldsEdit: [
-				{
-					autocompleteRemove: {
-						person_1: ['Ken Barlow'],
-						person_2: ['Mike Baldwin'],
-					},
-					autocompleteAdd: {
-						person_1: ['Steve McDonald'],
-						person_2: ['Kevin Webster'],
-					},
-					select: {
-						relationship: 'adoptive parent',
-					},
-				},
-			],
 		});
-
-		cy.handlesEverything({
+		handlesEdit({
 			...data,
-			fieldsAdd: {
+			fields: {
+				autocompleteRemove: {
+					person_1: ['Ken Barlow'],
+					person_2: ['Mike Baldwin'],
+				},
+				autocompleteAdd: {
+					person_1: ['Steve McDonald'],
+					person_2: ['Kevin Webster'],
+				},
+				select: {
+					relationship: 'adoptive parent',
+				},
+			},
+		});
+		handlesDelete(data);
+
+		cy.get('[data-cy="add"]').click();
+		handlesAdd({
+			...data,
+			fields: {
 				autocompleteAdd: {
 					person_1: ['Ken Barlow'],
 					person_2: ['Mike Baldwin'],
@@ -59,30 +84,32 @@ describe('relationships', () => {
 					take_last_name: true,
 				},
 			},
-			fieldsEdit: [
-				{
-					autocompleteRemove: {
-						person_1: ['Ken Barlow'],
-						person_2: ['Mike Baldwin'],
-					},
-					autocompleteAdd: {
-						person_1: ['Steve McDonald'],
-						person_2: ['Kevin Webster'],
-					},
-					select: {
-						relationship: 'adoptive parent',
-						end_reason: 'current',
-					},
-					text: {
-						start_date: '2003-03-03',
-						end_date: '2004-04-04',
-					},
-					uncheck: {
-						take_last_name: true,
-					},
-				},
-			],
 		});
+		handlesEdit({
+			...data,
+			fields: {
+				autocompleteRemove: {
+					person_1: ['Ken Barlow'],
+					person_2: ['Mike Baldwin'],
+				},
+				autocompleteAdd: {
+					person_1: ['Steve McDonald'],
+					person_2: ['Kevin Webster'],
+				},
+				select: {
+					relationship: 'adoptive parent',
+					end_reason: 'current',
+				},
+				text: {
+					start_date: '2003-03-03',
+					end_date: '2004-04-04',
+				},
+				uncheck: {
+					take_last_name: true,
+				},
+			},
+		});
+		handlesDelete(data);
 	});
 
 	const errorData = {
@@ -104,20 +131,21 @@ describe('relationships', () => {
 	};
 
 	it('handles index errors', () => {
-		cy.handlesIndexErrors(errorData);
+		handlesIndexErrors(errorData);
 	});
 
 	it('handles add errors', () => {
-		cy.handlesAddErrors(errorData);
+		handlesAddErrors(errorData);
 	});
 
 	it('handles view errors', () => {
-		cy.handlesViewErrors(errorData);
+		handlesViewErrors(errorData);
 	});
 
 	it('handles edit errors', () => {
-		cy.handlesEditErrors(errorData);
+		handlesEditErrors(errorData);
 	});
 
+	// TODO: Create people rather than using existing people.
 	// TODO: Error loading people.
 });
