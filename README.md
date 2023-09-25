@@ -18,7 +18,7 @@ cd corrie-admin
 yarn start
 ```
 
-View the site at http://localhost:3000/admin
+Your browser should automatically open http://localhost:3000/admin
 
 ### Lint
 
