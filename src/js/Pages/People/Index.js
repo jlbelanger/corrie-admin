@@ -16,7 +16,7 @@ export default function Index() {
 					fn: (_row, value) => {
 						if (!value) {
 							return (
-								<div style={{ height: '50px', width: '50px' }} />
+								<div className="image-placeholder" />
 							);
 						}
 						return (
