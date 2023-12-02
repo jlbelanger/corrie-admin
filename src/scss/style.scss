@@ -10,3 +10,13 @@ $crudnick-primary: #526831;
 	height: 50px;
 	width: 50px;
 }
+
+.border {
+	border: 1px solid $crudnick-primary;
+	margin-top: $crudnick-margin;
+	padding: $crudnick-padding;
+
+	& > :first-child {
+		margin-top: 0;
+	}
+}
