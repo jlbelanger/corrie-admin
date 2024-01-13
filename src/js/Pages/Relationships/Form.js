@@ -62,6 +62,14 @@ export default function Form({ row }) {
 			<div className="formosa-horizontal">
 				<Field autoFocus label="Relationship" name="relationship" options={relationships} required type="select" />
 				<Field
+					afterAdd={() => {
+						const elem = document.querySelector('[id="person_2"]');
+						if (elem) {
+							elem.focus();
+						} else {
+							document.querySelector('[id="start_date"]').focus();
+						}
+					}}
 					label="Person 1"
 					labelFn={labelFn}
 					max={1}
@@ -73,6 +81,10 @@ export default function Form({ row }) {
 					valueKey={valueKey}
 				/>
 				<Field
+					afterAdd={() => {
+						const elem = document.querySelector('[id="start_date"]');
+						elem.focus();
+					}}
 					label="Person 2"
 					labelFn={labelFn}
 					max={1}
