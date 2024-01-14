@@ -53,6 +53,7 @@ export default function Form({ row }) {
 		'death',
 		'divorce',
 		'invalid',
+		'unknown',
 	];
 	const showTakeLastName = row && ['adoptive parent', 'common law spouse', 'spouse'].includes(row.relationship);
 
