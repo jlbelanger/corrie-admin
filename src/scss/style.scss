@@ -20,3 +20,12 @@ $crudnick-primary: #526831;
 		margin-top: 0;
 	}
 }
+
+details {
+	margin-top: $crudnick-margin;
+}
+
+summary {
+	cursor: pointer;
+	display: inline-block;
+}
