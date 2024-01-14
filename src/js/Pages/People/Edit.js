@@ -1,6 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
+import { ReactComponent as CheckIcon } from '@jlbelanger/crudnick/src/svg/check.svg';
 import { EditForm } from '@jlbelanger/crudnick';
 import Form from './Form';
+import get from 'get-value';
 import React from 'react';
 
 export default function Edit() {
@@ -36,8 +38,23 @@ export default function Edit() {
 					}
 				});
 
-				spouses = spouses.sort((a, b) => (a.start_date.localeCompare(b.start_date)));
-				children = children.sort((a, b) => (a.person_2.birthdate.localeCompare(b.person_2.birthdate)));
+				const sortByDate = (a, b, key) => {
+					const aVal = get(a, key);
+					const bVal = get(b, key);
+					if (!aVal && !bVal) {
+						return 0;
+					}
+					if (!aVal) {
+						return -1;
+					}
+					if (!bVal) {
+						return 1;
+					}
+					return aVal.localeCompare(bVal);
+				};
+
+				spouses = spouses.sort((a, b) => sortByDate(a, b, 'start_date'));
+				children = children.sort((a, b) => sortByDate(a, b, 'person_2.birthdate'));
 
 				return (
 					<>
@@ -60,9 +77,9 @@ export default function Edit() {
 									<tbody>
 										{parents.map((rel) => (
 											<tr key={rel.id}>
-												<td>{rel.relationship}</td>
+												<td><Link to={`/relationships/${rel.id}`}>{rel.relationship}</Link></td>
 												<td><Link to={`/people/${rel.person_1.id}`}>{rel.person_1.name}</Link></td>
-												<td>{rel.take_last_name}</td>
+												<td>{rel.take_last_name && (<CheckIcon aria-hidden="true" height={16} width={16} />)}</td>
 											</tr>
 										))}
 									</tbody>
@@ -92,7 +109,7 @@ export default function Edit() {
 									<tbody>
 										{spouses.map((rel) => (
 											<tr key={rel.id}>
-												<td>{rel.relationship}</td>
+												<td><Link to={`/relationships/${rel.id}`}>{rel.relationship}</Link></td>
 												<td>
 													{rel.person_2
 														? (<Link to={`/people/${rel.person_2.id}`}>{rel.person_2.name}</Link>)
@@ -101,7 +118,7 @@ export default function Edit() {
 												<td>{rel.start_date}</td>
 												<td>{rel.end_date}</td>
 												<td>{rel.end_reason}</td>
-												<td>{rel.take_last_name}</td>
+												<td>{rel.take_last_name && (<CheckIcon aria-hidden="true" height={16} width={16} />)}</td>
 											</tr>
 										))}
 									</tbody>
@@ -129,10 +146,10 @@ export default function Edit() {
 									<tbody>
 										{children.map((rel) => (
 											<tr key={rel.id}>
-												<td>{rel.relationship}</td>
+												<td><Link to={`/relationships/${rel.id}`}>{rel.relationship}</Link></td>
 												<td><Link to={`/people/${rel.person_2.id}`}>{rel.person_2.name}</Link></td>
 												<td>{rel.person_2.birthdate}</td>
-												<td>{rel.take_last_name}</td>
+												<td>{rel.take_last_name && (<CheckIcon aria-hidden="true" height={16} width={16} />)}</td>
 											</tr>
 										))}
 									</tbody>
@@ -162,7 +179,7 @@ export default function Edit() {
 									<tbody>
 										{other.map((rel) => (
 											<tr key={rel.id}>
-												<td>{rel.relationship}</td>
+												<td><Link to={`/relationships/${rel.id}`}>{rel.relationship}</Link></td>
 												<td>
 													{rel.person_2
 														? (<Link to={`/people/${rel.person_2.id}`}>{rel.person_2.name}</Link>)
@@ -171,7 +188,7 @@ export default function Edit() {
 												<td>{rel.start_date}</td>
 												<td>{rel.end_date}</td>
 												<td>{rel.end_reason}</td>
-												<td>{rel.take_last_name}</td>
+												<td>{rel.take_last_name && (<CheckIcon aria-hidden="true" height={16} width={16} />)}</td>
 											</tr>
 										))}
 									</tbody>
