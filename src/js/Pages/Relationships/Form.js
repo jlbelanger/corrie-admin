@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { errorMessageText } from '@jlbelanger/crudnick';
 import PropTypes from 'prop-types';
 
-export default function Form({ row }) {
+export default function Form({ row = null }) {
 	const [people, setPeople] = useState([]);
 	const [peopleError, setPeopleError] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
@@ -107,8 +107,4 @@ export default function Form({ row }) {
 
 Form.propTypes = {
 	row: PropTypes.object,
-};
-
-Form.defaultProps = {
-	row: null,
 };
