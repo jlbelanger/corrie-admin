@@ -1,5 +1,5 @@
-import { Link, useParams } from 'react-router-dom';
-import { ReactComponent as CheckIcon } from '@jlbelanger/crudnick/src/svg/check.svg';
+import { Link, useParams } from 'react-router';
+import { CheckIcon } from '@jlbelanger/formosa';
 import { EditForm } from '@jlbelanger/crudnick';
 import Form from './Form';
 import get from 'get-value';

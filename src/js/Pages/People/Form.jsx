@@ -33,7 +33,7 @@ export default function Form() {
 			<Field afterChange={autopopulate} autoFocus label="First name" maxLength={255} name="first_name" note="Use ? if unknown." required />
 			<Field afterChange={autopopulate} label="Last name" maxLength={255} name="last_name" note="Use ? if unknown." required />
 			<Field label="Slug" maxLength={255} name="slug" required />
-			<Field accept="image/*" label="Image" imagePrefix={process.env.REACT_APP_FRONTEND_URL} imagePreview name="filename" type="file" />
+			<Field accept="image/*" label="Image" imagePrefix={import.meta.env.VITE_FRONTEND_URL} imagePreview name="filename" type="file" />
 			<Field label="Gender" fieldsetClassName="formosa-radio--inline" name="gender" options={{ M: 'Male', F: 'Female' }} type="radio" />
 			<Field label="Birthdate" maxLength={10} name="birthdate" placeholder="YYYY-MM-DD" size={12} />
 			<Field label="Deathdate" maxLength={10} name="deathdate" placeholder="YYYY-MM-DD" size={12} />
