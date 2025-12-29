@@ -8,6 +8,8 @@ Cypress.Commands.add('login', (username = '', password = '', expectedCode = 200)
 		cy.get('[name="password"]').type(password);
 		cy.intercept('POST', '**/api/auth/login').as(`login${timestamp}`);
 		cy.get('[type="submit"]').click();
-		cy.wait(`@login${timestamp}`).its('response.statusCode').should('equal', expectedCode);
+		cy.wait(`@login${timestamp}`)
+			.its('response.statusCode')
+			.should('equal', expectedCode);
 	});
 });

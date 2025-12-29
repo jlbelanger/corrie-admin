@@ -1,5 +1,5 @@
 import { Alert, Api, Field } from '@jlbelanger/formosa';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { errorMessageText } from '@jlbelanger/crudnick';
 import PropTypes from 'prop-types';
 
