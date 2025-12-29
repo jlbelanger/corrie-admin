@@ -1,5 +1,4 @@
 import { IndexTable } from '@jlbelanger/crudnick';
-import React from 'react';
 
 export default function Index() {
 	let url = 'relationships?sort=-created_at';

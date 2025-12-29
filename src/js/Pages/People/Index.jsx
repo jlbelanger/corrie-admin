@@ -1,5 +1,4 @@
 import { IndexTable } from '@jlbelanger/crudnick';
-import React from 'react';
 
 export default function Index() {
 	let url = 'people?sort=-num_appearances';
@@ -24,7 +23,7 @@ export default function Index() {
 								alt=""
 								height={50}
 								loading="lazy"
-								src={`${process.env.REACT_APP_FRONTEND_URL}${value}`}
+								src={`${import.meta.env.VITE_FRONTEND_URL}${value}`}
 								width={50}
 							/>
 						);

@@ -1,0 +1,31 @@
+:root {
+	--crudnick-primary: #526831;
+}
+
+.crudnick-cell--filename {
+	font-size: 0;
+}
+
+.image-placeholder {
+	height: 50px;
+	width: 50px;
+}
+
+.border {
+	border: 1px solid var(--crudnick-primary);
+	margin-top: var(--crudnick-margin);
+	padding: var(--crudnick-padding);
+
+	& > :first-child {
+		margin-top: 0;
+	}
+}
+
+details {
+	margin-top: var(--crudnick-margin);
+}
+
+summary {
+	cursor: pointer;
+	display: inline-block;
+}

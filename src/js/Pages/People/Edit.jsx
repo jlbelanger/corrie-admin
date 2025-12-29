@@ -1,9 +1,8 @@
-import { Link, useParams } from 'react-router-dom';
-import { ReactComponent as CheckIcon } from '@jlbelanger/crudnick/src/svg/check.svg';
+import { Link, useParams } from 'react-router';
+import { CheckIcon } from '@jlbelanger/formosa';
 import { EditForm } from '@jlbelanger/crudnick';
-import Form from './Form';
+import Form from './Form.jsx';
 import get from 'get-value';
-import React from 'react';
 
 export default function Edit() {
 	const { id } = useParams();
@@ -12,6 +11,9 @@ export default function Edit() {
 
 	return (
 		<EditForm
+			apiPath="people"
+			component={Form}
+			encType="multipart/form-data"
 			extra={(row) => {
 				const parents = [];
 				let children = [];
@@ -198,9 +200,6 @@ export default function Edit() {
 					</>
 				);
 			}}
-			apiPath="people"
-			component={Form}
-			encType="multipart/form-data"
 			name="name"
 			path="people"
 			singular="person"

@@ -1,5 +1,5 @@
 import { Alert, Api, Field } from '@jlbelanger/formosa';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { errorMessageText } from '@jlbelanger/crudnick';
 import PropTypes from 'prop-types';
 
@@ -27,7 +27,7 @@ export default function Form({ row = null }) {
 	const labelFn = (option) => (
 		<a
 			className="crudnick-autocomplete-link"
-			href={`${process.env.PUBLIC_URL}/people/${option.id}`}
+			href={`${import.meta.env.VITE_FRONTEND_URL}/people/${option.id}`}
 			rel="noopener noreferrer"
 			target="_blank"
 		>
