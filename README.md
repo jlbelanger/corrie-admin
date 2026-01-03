@@ -5,7 +5,7 @@
 ### Requirements
 
 - [Git](https://git-scm.com/)
-- [Yarn](https://classic.yarnpkg.com/en/docs/install)
+- [Node](https://nodejs.org/)
 
 ### Setup
 
@@ -15,7 +15,7 @@ First, setup [Corrieography](https://github.com/jlbelanger/corrie).
 git clone https://github.com/jlbelanger/corrie-admin.git
 cd corrie-admin
 ./setup.sh
-yarn start
+npm start
 ```
 
 Your browser should automatically open http://localhost:3000/admin
@@ -23,13 +23,13 @@ Your browser should automatically open http://localhost:3000/admin
 ### Lint
 
 ``` bash
-yarn lint
+npm run lint
 ```
 
 ### Test
 
 ``` bash
-yarn test:cypress
+npm run test:cypress
 ```
 
 ## Deployment
