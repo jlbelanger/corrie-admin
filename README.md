@@ -11,7 +11,7 @@
 
 First, setup [Corrieography](https://github.com/jlbelanger/corrie).
 
-``` bash
+```bash
 git clone https://github.com/jlbelanger/corrie-admin.git
 cd corrie-admin
 ./setup.sh
@@ -22,13 +22,13 @@ Your browser should automatically open http://localhost:3000/admin
 
 ### Lint
 
-``` bash
+```bash
 npm run lint
 ```
 
 ### Test
 
-``` bash
+```bash
 npm run test:cypress
 ```
 
@@ -36,6 +36,6 @@ npm run test:cypress
 
 Note: The deploy script included in this repo depends on other scripts that only exist in my private repos. If you want to deploy this repo, you'll have to create your own script.
 
-``` bash
+```bash
 ./deploy.sh
 ```

@@ -14,9 +14,7 @@ export default function Index() {
 					size: 1,
 					fn: (_row, value) => {
 						if (!value) {
-							return (
-								<div className="image-placeholder" />
-							);
+							return <div className="image-placeholder" />;
 						}
 						return (
 							<img
@@ -54,6 +52,7 @@ export default function Index() {
 					key: 'num_appearances',
 					label: 'Appearances',
 					size: 12,
+					// eslint-disable-next-line @stylistic/no-extra-parens
 					fn: (_row, value) => (value ? value.toLocaleString() : ''),
 				},
 				{

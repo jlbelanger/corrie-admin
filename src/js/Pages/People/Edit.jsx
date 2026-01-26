@@ -6,8 +6,13 @@ import get from 'get-value';
 
 export default function Edit() {
 	const { id } = useParams();
-	let url = `people/${id}`;
-	url += '?include=relationships_as_person_1,relationships_as_person_2,relationships_as_person_1.person_2,relationships_as_person_2.person_1';
+	const include = [
+		'relationships_as_person_1',
+		'relationships_as_person_2',
+		'relationships_as_person_1.person_2',
+		'relationships_as_person_2.person_1',
+	];
+	const url = `people/${id}?include=${include.join(',')}`;
 
 	return (
 		<EditForm
@@ -79,9 +84,15 @@ export default function Edit() {
 									<tbody>
 										{parents.map((rel) => (
 											<tr key={rel.id}>
-												<td><Link to={`/relationships/${rel.id}`}>{rel.relationship}</Link></td>
-												<td><Link to={`/people/${rel.person_1.id}`}>{rel.person_1.name}</Link></td>
-												<td>{rel.take_last_name && (<CheckIcon aria-hidden="true" height={16} width={16} />)}</td>
+												<td>
+													<Link to={`/relationships/${rel.id}`}>{rel.relationship}</Link>
+												</td>
+												<td>
+													<Link to={`/people/${rel.person_1.id}`}>{rel.person_1.name}</Link>
+												</td>
+												<td>
+													{rel.take_last_name ? <CheckIcon aria-hidden="true" height={16} width={16} /> : null}
+												</td>
 											</tr>
 										))}
 									</tbody>
@@ -111,16 +122,20 @@ export default function Edit() {
 									<tbody>
 										{spouses.map((rel) => (
 											<tr key={rel.id}>
-												<td><Link to={`/relationships/${rel.id}`}>{rel.relationship}</Link></td>
+												<td>
+													<Link to={`/relationships/${rel.id}`}>{rel.relationship}</Link>
+												</td>
 												<td>
 													{rel.person_2
-														? (<Link to={`/people/${rel.person_2.id}`}>{rel.person_2.name}</Link>)
-														: (<Link to={`/people/${rel.person_1.id}`}>{rel.person_1.name}</Link>)}
+														? <Link to={`/people/${rel.person_2.id}`}>{rel.person_2.name}</Link>
+														: <Link to={`/people/${rel.person_1.id}`}>{rel.person_1.name}</Link>}
 												</td>
 												<td>{rel.start_date}</td>
 												<td>{rel.end_date}</td>
 												<td>{rel.end_reason}</td>
-												<td>{rel.take_last_name && (<CheckIcon aria-hidden="true" height={16} width={16} />)}</td>
+												<td>
+													{rel.take_last_name ? <CheckIcon aria-hidden="true" height={16} width={16} /> : null}
+												</td>
 											</tr>
 										))}
 									</tbody>
@@ -148,10 +163,16 @@ export default function Edit() {
 									<tbody>
 										{children.map((rel) => (
 											<tr key={rel.id}>
-												<td><Link to={`/relationships/${rel.id}`}>{rel.relationship}</Link></td>
-												<td><Link to={`/people/${rel.person_2.id}`}>{rel.person_2.name}</Link></td>
+												<td>
+													<Link to={`/relationships/${rel.id}`}>{rel.relationship}</Link>
+												</td>
+												<td>
+													<Link to={`/people/${rel.person_2.id}`}>{rel.person_2.name}</Link>
+												</td>
 												<td>{rel.person_2.birthdate}</td>
-												<td>{rel.take_last_name && (<CheckIcon aria-hidden="true" height={16} width={16} />)}</td>
+												<td>
+													{rel.take_last_name ? <CheckIcon aria-hidden="true" height={16} width={16} /> : null}
+												</td>
 											</tr>
 										))}
 									</tbody>
@@ -181,16 +202,20 @@ export default function Edit() {
 									<tbody>
 										{other.map((rel) => (
 											<tr key={rel.id}>
-												<td><Link to={`/relationships/${rel.id}`}>{rel.relationship}</Link></td>
+												<td>
+													<Link to={`/relationships/${rel.id}`}>{rel.relationship}</Link>
+												</td>
 												<td>
 													{rel.person_2
-														? (<Link to={`/people/${rel.person_2.id}`}>{rel.person_2.name}</Link>)
-														: (<Link to={`/people/${rel.person_1.id}`}>{rel.person_1.name}</Link>)}
+														? <Link to={`/people/${rel.person_2.id}`}>{rel.person_2.name}</Link>
+														: <Link to={`/people/${rel.person_1.id}`}>{rel.person_1.name}</Link>}
 												</td>
 												<td>{rel.start_date}</td>
 												<td>{rel.end_date}</td>
 												<td>{rel.end_reason}</td>
-												<td>{rel.take_last_name && (<CheckIcon aria-hidden="true" height={16} width={16} />)}</td>
+												<td>
+													{rel.take_last_name ? <CheckIcon aria-hidden="true" height={16} width={16} /> : null}
+												</td>
 											</tr>
 										))}
 									</tbody>

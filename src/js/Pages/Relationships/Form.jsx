@@ -47,19 +47,12 @@ export default function Form({ row = null }) {
 		'spouse',
 		'surrogate parent',
 	];
-	const endReasons = [
-		'annulled',
-		'current',
-		'death',
-		'divorce',
-		'invalid',
-		'unknown',
-	];
+	const endReasons = ['annulled', 'current', 'death', 'divorce', 'invalid', 'unknown'];
 	const showTakeLastName = row && ['adoptive parent', 'common law spouse', 'spouse'].includes(row.relationship);
 
 	return (
 		<>
-			{peopleError && (<Alert type="error">There was an error loading the list of people.</Alert>)}
+			{peopleError ? <Alert type="error">There was an error loading the list of people.</Alert> : null}
 			<div className="formosa-horizontal">
 				<Field autoFocus label="Relationship" name="relationship" options={relationships} required type="select" />
 				<Field

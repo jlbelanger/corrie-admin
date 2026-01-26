@@ -24,7 +24,7 @@ describe('people', () => {
 	};
 
 	it('works', () => {
-		let timestamp = (new Date()).getTime();
+		let timestamp = new Date().getTime();
 
 		setupInterceptions(data);
 		handlesIndex(data);
@@ -56,7 +56,7 @@ describe('people', () => {
 		});
 		handlesDelete(data);
 
-		timestamp = (new Date()).getTime();
+		timestamp = new Date().getTime();
 		cy.get('[data-cy="add"]').click();
 		handlesAdd({
 			...data,
@@ -124,13 +124,13 @@ describe('people', () => {
 		...data,
 		fields: {
 			text: {
-				first_name: () => (`Aaa ${(new Date()).getTime()}`),
+				first_name: () => `Aaa ${new Date().getTime()}`,
 				last_name: 'Aaa',
 			},
 		},
 		fieldsEdit: {
 			text: {
-				first_name: () => (`Bbb ${(new Date()).getTime()}`),
+				first_name: () => `Bbb ${new Date().getTime()}`,
 			},
 		},
 	};
