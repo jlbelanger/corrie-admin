@@ -1,8 +1,8 @@
 import { IndexTable } from '@jlbelanger/crudnick';
 
 export default function Index() {
-	let url = 'people?sort=-num_appearances';
-	url += '&fields[people]=name,slug,birthdate,deathdate,is_current,num_appearances,appearances_date,filename,date_added';
+	let url = 'people';
+	url += '?fields[people]=name,slug,birthdate,deathdate,is_current,num_appearances,appearances_date,filename,created_at';
 	return (
 		<IndexTable
 			columns={[
@@ -61,7 +61,7 @@ export default function Index() {
 					size: 12,
 				},
 				{
-					key: 'date_added',
+					key: 'created_at',
 					label: 'Date added',
 					size: 20,
 				},

@@ -1,8 +1,8 @@
 import { IndexTable } from '@jlbelanger/crudnick';
 
 export default function Index() {
-	let url = 'relationships?sort=-created_at';
-	url += '&fields[relationships]=relationship,start_date,end_date,date_added';
+	let url = 'relationships';
+	url += '?fields[relationships]=relationship,start_date,end_date,created_at';
 	url += '&fields[people]=name';
 	url += '&include=person_1,person_2';
 	return (
@@ -33,13 +33,13 @@ export default function Index() {
 					size: 12,
 				},
 				{
-					key: 'date_added',
+					key: 'created_at',
 					label: 'Date added',
 					size: 20,
 				},
 			]}
 			defaultOptions={{
-				sortKey: 'date_added',
+				sortKey: 'created_at',
 				sortDir: 'desc',
 			}}
 			path="relationships"

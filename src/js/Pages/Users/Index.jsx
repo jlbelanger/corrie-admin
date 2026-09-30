@@ -19,7 +19,7 @@ export default function Index() {
 			}}
 			path="users"
 			title="Users"
-			url="users?sort=username&fields[users]=username,email"
+			url="users?fields[users]=username,email"
 		/>
 	);
 }
